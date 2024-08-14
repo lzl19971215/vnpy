@@ -3,7 +3,7 @@ Basic data structure used for general trading function in the trading platform.
 """
 
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import INFO
 
 from .constant import Direction, Exchange, Interval, Offset, Status, Product, OptionType, OrderType
@@ -92,6 +92,7 @@ class BarData(BaseData):
     datetime: datetime
 
     interval: Interval = None
+    custom_interval: timedelta = timedelta(seconds=0)
     volume: float = 0
     turnover: float = 0
     open_interest: float = 0

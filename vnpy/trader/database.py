@@ -75,7 +75,8 @@ class BaseDatabase(ABC):
         exchange: Exchange,
         interval: Interval,
         start: datetime,
-        end: datetime
+        end: datetime,
+        **kwargs
     ) -> List[BarData]:
         """
         Load bar data from database.

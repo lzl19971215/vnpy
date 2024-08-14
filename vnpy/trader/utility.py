@@ -504,6 +504,11 @@ class ArrayManager(object):
         self.turnover_array: np.ndarray = np.zeros(size)
         self.open_interest_array: np.ndarray = np.zeros(size)
 
+        self.datetime_array = []
+
+    def reset(self) -> None:
+        self.__init__(self.size)
+
     def update_bar(self, bar: BarData) -> None:
         """
         Update new bar data into array manager.
@@ -527,6 +532,13 @@ class ArrayManager(object):
         self.volume_array[-1] = bar.volume
         self.turnover_array[-1] = bar.turnover
         self.open_interest_array[-1] = bar.open_interest
+
+        self.datetime_array.append(bar.datetime)
+        if self.count > self.size:
+            self.datetime_array.pop(0)
+
+        
+
 
     @property
     def open(self) -> np.ndarray:
